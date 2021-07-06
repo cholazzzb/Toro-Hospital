@@ -31,6 +31,7 @@ export default function Navbar({ content, contentId, setContentId }) {
       </div>
       {content.map((elem, id) => (
         <div
+          key={id}
           className={`flex items-center p-2 my-2 rounded-lg cursor-pointer ${styleSelected(
             contentId == id
           )}`}

@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Patient from "@components/Dashboard/Patient";
+import Admin from "@components/Dashboard/Admin";
 
 export default function dashboard() {
   return (
@@ -9,7 +10,8 @@ export default function dashboard() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Patient />
+      {/* <Patient /> */}
+      <Admin />
     </div>
   );
 }
