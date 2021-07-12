@@ -16,13 +16,13 @@ export default async function signup(req, res) {
         const token = await newUser.generateAuthToken();
         res.status(201).send({ success: true, token });
       } catch (error) {
-        console.error(`ERR Signup API - Error:${error}`);
+        console.error(`ERR /auth/signup API - Error:${error}`);
         res.status(400).json({ success: false });
       }
       break;
 
     default:
-      console.error(`ERR Signup API - Error:${error}`);
+      console.error(`ERR /auth/signup API - Error:Method = ${method}}`);
       res.status(400).json({ success: false });
       break;
   }

@@ -16,7 +16,7 @@ const navbarList = [
   },
 ];
 
-export default function Admin() {
+export default function Admin({ username, role }) {
   const [contentId, setContentId] = useState(0);
   return (
     <div className="flex w-full">
@@ -26,7 +26,7 @@ export default function Admin() {
         setContentId={setContentId}
       />
       <div className="flex flex-col w-full">
-        <Header />
+        <Header username={username} role={role} />
         <Content contentId={contentId} />
       </div>
     </div>

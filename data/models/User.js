@@ -22,7 +22,14 @@ const UserSchema = new mongoose.Schema({
     minLength: 7,
   },
   tokens: [{ token: { type: String, required: true } }],
-  profileId: { type: String, required: true },
+  role: { type: String, required: true },
+  profile: {
+    firstName: { type: String, required: true },
+    lastName: { type: String, required: true },
+    age: { type: Number, required: true },
+    gender: String,
+    imageId: String,
+  },
 });
 
 UserSchema.pre("save", async function (next) {
@@ -41,19 +48,6 @@ UserSchema.methods.generateAuthToken = async function () {
   user.tokens = user.tokens.concat({ token });
   await user.save();
   return token;
-};
-
-UserSchema.statics.findByCredentials = async (email, password) => {
-  // Search for a user by email and password.
-  const user = await User.findOne({ email });
-  if (!user) {
-    throw new Error({ error: "Invalid login credentials" });
-  }
-  const isPasswordMatch = await bcrypt.compare(password, user.password);
-  if (!isPasswordMatch) {
-    throw new Error({ error: "Invalid login credentials" });
-  }
-  return user;
 };
 
 export default mongoose.models.User || mongoose.model("User", UserSchema);
