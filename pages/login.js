@@ -27,7 +27,6 @@ export default function login() {
         },
         body: JSON.stringify(formData),
       });
-      const resData = await res.json();
 
       if (res.status == 201) {
         router.push("/dashboard");

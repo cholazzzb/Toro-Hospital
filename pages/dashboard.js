@@ -35,7 +35,7 @@ export default function dashboard({ username, role }) {
         <Admin username={username} role={role} />
       ) : (
         <div className="flex w-full justify-center items-center text-4xl">
-          You do not access to this resource!
+          You do not have access to this resource!
         </div>
       )}
     </div>
