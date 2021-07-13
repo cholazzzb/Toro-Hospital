@@ -13,11 +13,7 @@ body {
 .background {
   background-color: #161d31;
   height: 100vh;
-  padding-bottom: 3rem;
   display: flex;
-  /* flex-direction: column;
-  justify-content: center;
-  align-items: center; */
 }
 
 .color1 {

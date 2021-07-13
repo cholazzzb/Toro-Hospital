@@ -6,13 +6,12 @@ export default async function checkProfile(req) {
   if (cookies) {
     const token = cookies.substring(6, cookies.length);
     const data = jwt.verify(token, process.env.JWT_KEY);
-    console.log('ID', data._id)
     try {
       const user = await User.findOne({ _id: data._id, "tokens.token": token });
       if (!user) {
         throw new Error();
       }
-      return { username: user.username, role: user.role };
+      return { profileId: data._id, username: user.username, role: user.role };
     } catch (error) {
       console.error(`ERR utils/checkProfile API - Error:${error}`);
       return { username: "", role: "" };

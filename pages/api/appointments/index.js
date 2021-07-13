@@ -1,9 +1,15 @@
 import Appointment from "data/models/Appointment";
+import User from "data/models/User";
 import dbConnect from "utils/dbConnect";
 
 export default async function handler(req, res) {
   const {
-    query: {},
+    query: {
+      // PUT
+      profileId,
+      // PUT and DELETE
+      appointmentId,
+    },
     method,
   } = req;
 
@@ -12,7 +18,12 @@ export default async function handler(req, res) {
   switch (method) {
     case "POST":
       try {
-        const newAppointment = await Appointment.create(req.body);
+        let formData = {
+          ...req.body,
+          registrants: [],
+          availableTime: new Date(req.body.availableTime),
+        };
+        await Appointment.create(formData);
         res.status(200).json({ success: true });
       } catch (error) {
         console.error(
@@ -34,8 +45,32 @@ export default async function handler(req, res) {
       break;
 
     case "PUT":
+      try {
+        await Appointment.findByIdAndUpdate(appointmentId, {
+          $push: {
+            registrants: { profileId: profileId },
+          },
+        });
+        res.status(200).json({ success: true });
+      } catch (error) {
+        console.error(
+          `ERR Appointment API (PUT) - user id: ${profileId}  Error : ${error}`
+        );
+        res.status(400).json({ success: false });
+      }
       break;
     case "DELETE":
+      try {
+        await Appointment.findByIdAndDelete({
+          _id: appointmentId,
+        });
+        res.status(200).json({ success: true });
+      } catch (error) {
+        console.error(
+          `ERR Appointment API (DELETE) - user id: ${profileId}  Error : ${error}`
+        );
+        res.status(400).json({ success: false });
+      }
       break;
 
     default:

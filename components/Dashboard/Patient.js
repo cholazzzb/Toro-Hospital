@@ -16,10 +16,10 @@ const navbarList = [
   },
 ];
 
-export default function Patient({username, role}) {
+export default function Patient({profileId, username, role}) {
   const [contentId, setContentId] = useState(0);
   return (
-    <div className="flex w-full">
+    <div className="flex w-full h-full">
       <Navbar
         content={navbarList}
         contentId={contentId}
@@ -27,7 +27,7 @@ export default function Patient({username, role}) {
       />
       <div className="flex flex-col w-full">
         <Header username={username} role={role}/>
-        <Content contentId={contentId} />
+        <Content contentId={contentId} profileId={profileId}/>
       </div>
     </div>
   );
