@@ -18,6 +18,7 @@ export async function getServerSideProps(context) {
 
 export default function dashboard({ profileId, username, role }) {
   const router = useRouter();
+  console.log("profileId - username - role", profileId, username, role)
   useEffect(() => {
     if (role == "") {
       router.push("/");
