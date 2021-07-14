@@ -1,6 +1,6 @@
 import Appointment from "data/models/Appointment";
-import User from "data/models/User";
 import dbConnect from "utils/dbConnect";
+import mongoose from 'mongoose'
 
 export default async function handler(req, res) {
   const {
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
       try {
         await Appointment.findByIdAndUpdate(appointmentId, {
           $push: {
-            registrants: { profileId: profileId },
+            registrants: { profileId: profileId},
           },
         });
         res.status(200).json({ success: true });

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from "mongoose"
 
 const AppointmentSchema = new mongoose.Schema({
   doctor: { type: String, required: true },

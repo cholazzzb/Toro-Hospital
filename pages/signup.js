@@ -24,7 +24,7 @@ const initialProfileData = {
 };
 export default function signup() {
   const router = useRouter();
-  const [slide, setSlide] = useState(1);
+  const [slide, setSlide] = useState(0);
   const [formData, setFormData] = useState(initialFormData);
   const [profileData, setProfileData] = useState(initialProfileData);
   const [selectedGender, setSelectedGender] = useState(null);

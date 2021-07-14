@@ -55,7 +55,7 @@ export default function Appointment() {
   };
 
   const [registrantModalOpen, setRegistrantModalOpen] = useState(false);
-  const [seeData, setSeeData] = useState({ doctor: "", appointmentId: "" });
+  const [seeData, setSeeData] = useState({ appointmentId: "",doctor: "", appointmentId: "" });
 
   const [editModalOpen, setEditModalOpen] = useState(false);
   const [editData, setEditData] = useState({});
@@ -121,6 +121,7 @@ export default function Appointment() {
                     <div
                       onClick={() => {
                         setSeeData({
+                          appointmentId: appointment._id,
                           doctor: appointment.doctor,
                           registrants: appointment.registrants,
                         });

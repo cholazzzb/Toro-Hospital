@@ -9,7 +9,7 @@ export default async function handler(req, res) {
    * // GET :
    *  appointmentId (doctor type) or registrantsId (patient type)
    * // PUT :
-   *
+   *  appointmentId (doctor & patient type)  
    * }
    * {
    * 2. type: // doctor or patient}
@@ -39,7 +39,6 @@ export default async function handler(req, res) {
         case "doctor":
           try {
             const appointment = await Appointment.findById(id);
-            console.log("WHUTTT", appointment);
             res.status(200).json({ success: true, data: appointment });
           } catch (error) {
             `ERR api/appointments/[id] type:doctor (GET) Error : `, error;
@@ -70,6 +69,13 @@ export default async function handler(req, res) {
             res.status(400).json({ success: false });
           }
 
+          break;
+
+        case "doctor":
+          try {
+            await Appointment.findByIdAndUpdate(id, req.body)
+            res.status(200).json({ success: true });
+          } catch (error) {}
           break;
 
         default:

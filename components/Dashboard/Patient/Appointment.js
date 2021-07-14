@@ -135,7 +135,7 @@ export default function Appointment({ profileId }) {
               </div>
 
               <div className="w-1/5 flex justify-center items-center">
-                {data.registrants?.length == 5 ? (
+                {data.registrants?.length >= 5 ? (
                   <div className="cursor-not-allowed rounded-xl bg-gray-900 p-2 text-sm text-red-500 border-2 border-red-900">
                     FULL
                   </div>
